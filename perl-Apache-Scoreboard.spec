@@ -4,8 +4,8 @@
 %bcond_with	tests	# don't perform "make test"
 
 %include	/usr/lib/rpm/macros.perl
-%define		pdir	Apache
-%define		pnam	Scoreboard
+%define	pdir	Apache
+%define	pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
