@@ -5,7 +5,7 @@ Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	0.10
-Release:	5
+Release:	6
 License:	?
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -13,7 +13,7 @@ BuildRequires:	apache-mod_perl
 BuildRequires:	apache-devel
 BuildRequires:	perl >= 5.6
 BuildRequires:	perl-Chart-PNGgraph
-BuildRequires:	rpm-perlprov >= 3.0.3-26
+BuildRequires:	rpm-perlprov >= 4.0.2-104
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
