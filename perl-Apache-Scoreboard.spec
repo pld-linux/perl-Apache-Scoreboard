@@ -2,10 +2,10 @@
 %define	pdir	Apache
 %define	pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
-#Summary(pl):	
+Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	0.10
-Release:	2
+Release:	3
 License:	?
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -18,13 +18,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Apache keeps track of server activity in a structure known as the
-I<scoreboard>.  There is a I<slot> in the scoreboard for each child
-server, containing information such as status, access count, bytes
-served and cpu time.  This same information is used by I<mod_status>
-to provide current server statistics in a human readable form.
+scoreboard. There is a slot in the scoreboard for each child server,
+containing information such as status, access count, bytes served and
+cpu time. This same information is used by mod_status to provide
+current server statistics in a human readable form.
 
-# %description -l pl
-# TODO
+%description -l pl
+Apache ¶ledzi aktywno¶æ serwera w strukturze znanej jako scoreboard.
+W scoreboard znajduje siê slot dla ka¿dego serwera potomnego,
+zawieraj±cy informacje takie jak stan, liczba klientów, wys³anych
+bajtów i zajêty czas procesora. Te same informacje s± u¿ywane przez
+mod_status do udostêpniania aktualnych statystyk w postaci czytelnej
+dla cz³owieka.
 
 # %package -n apache-mod_scoreboard_send
 # Should mod_scoreboard_send be built, too?  Here, or from a separate spec?
