@@ -16,8 +16,8 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	461284a6cf13cf20146b6e8d7f766615
 BuildRequires:	apache-mod_perl
-BuildRequires:	apr-devel
-BuildRequires:	apr-util-devel
+BuildRequires:	apr-devel >= 1:1.0
+BuildRequires:	apr-util-devel >= 1:1.0
 BuildRequires:	perl-devel >= 1:5.8.0
 %if %{with tests}
 BuildRequires:	perl-Chart-PNGgraph
