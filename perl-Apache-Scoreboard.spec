@@ -1,20 +1,27 @@
+# 
+# Conditional build:
+# Can't get tests to work. Apache::Test doesn't find mod_status.
+%bcond_with	tests	# don't perform "make test"
+
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	Apache
 %define		pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
-Version:	0.10
-Release:	7
+Version:	2.01
+Release:	1
 License:	?
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	2b267c55caded61c0ef765a45d9cdf2f
-BuildRequires:	apache-mod_perl
-BuildRequires:	apache-devel
-BuildRequires:	perl-devel >= 5.6
+# Source0-md5:	da1ac25b4821aab7046b2fb3ca893595
+BuildRequires:	apr-devel
+BuildRequires:	apr-util-devel
+BuildRequires:	perl-devel >= 1:5.8.0
+%if %{with tests}
 BuildRequires:	perl-Chart-PNGgraph
-BuildRequires:	rpm-perlprov >= 3.0.3-26
+%endif
+BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,20 +39,21 @@ bajtów i zajêty czas procesora. Te same informacje s± u¿ywane przez
 mod_status do udostêpniania aktualnych statystyk w postaci czytelnej
 dla cz³owieka.
 
-# %package -n apache-mod_scoreboard_send
-# Should mod_scoreboard_send be built, too?  Here, or from a separate spec?
-
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Makefile.PL
-%{__make} OPTIMIZE="%{rpmcflags}"
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor \
+	INC="-I/usr/include/apache $(apr-config --includes) $(apu-config --includes)"
+%{__make} \
+	OPTIMIZE="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -56,12 +64,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_sitearch}/Apache/*.pm
-%dir %{perl_sitearch}/auto/Apache/Scoreboard
-%attr(755,root,root) %{perl_sitearch}/auto/Apache/Scoreboard/*.so
-%{perl_sitearch}/auto/Apache/Scoreboard/*.bs
-%dir %{perl_sitearch}/auto/Apache/DummyScoreboard
-%attr(755,root,root) %{perl_sitearch}/auto/Apache/DummyScoreboard/*.so
-%{perl_sitearch}/auto/Apache/DummyScoreboard/*.bs
+%{perl_vendorarch}/Apache/*.pm
+%dir %{perl_vendorarch}/auto/Apache/Scoreboard
+%attr(755,root,root) %{perl_vendorarch}/auto/Apache/Scoreboard/*.so
+%{perl_vendorarch}/auto/Apache/Scoreboard/*.bs
+# Isn't built. What's this anyway?
+#%dir %{perl_vendorarch}/auto/Apache/DummyScoreboard
+#%attr(755,root,root) %{perl_vendorarch}/auto/Apache/DummyScoreboard/*.so
+#%{perl_vendorarch}/auto/Apache/DummyScoreboard/*.bs
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
