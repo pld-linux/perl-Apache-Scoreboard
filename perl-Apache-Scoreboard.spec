@@ -2,7 +2,7 @@
 # Conditional build:
 # Can't get tests to work. Apache::Test doesn't find mod_status.
 %bcond_with	tests	# don't perform "make test"
-
+#
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	Apache
 %define		pnam	Scoreboard
@@ -10,11 +10,12 @@ Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	2.02
-Release:	1
+Release:	2
 License:	unknown
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	461284a6cf13cf20146b6e8d7f766615
+BuildRequires:	apache-mod_perl
 BuildRequires:	apr-devel
 BuildRequires:	apr-util-devel
 BuildRequires:	perl-devel >= 1:5.8.0
