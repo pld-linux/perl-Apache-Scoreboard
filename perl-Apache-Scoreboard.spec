@@ -10,6 +10,7 @@ License:	?
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 BuildRequires:	apache-mod_perl
+BuildRequires:	apache-devel
 BuildRequires:	perl >= 5.6
 BuildRequires:	perl-Chart-PNGgraph
 BuildRequires:	rpm-perlprov >= 3.0.3-26
