@@ -1,11 +1,11 @@
 %include	/usr/lib/rpm/macros.perl
-%define	pdir	Apache
-%define	pnam	Scoreboard
+%define		pdir	Apache
+%define		pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	0.10
-Release:	3
+Release:	4
 License:	?
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -53,8 +53,8 @@ cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%doc Changes README
 %defattr(644,root,root,755)
+%doc Changes README
 %{perl_sitearch}/Apache/*.pm
 %dir %{perl_sitearch}/auto/Apache/Scoreboard
 %attr(755,root,root) %{perl_sitearch}/auto/Apache/Scoreboard/*.so
