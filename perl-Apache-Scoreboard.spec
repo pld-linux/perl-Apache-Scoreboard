@@ -5,13 +5,12 @@ Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 #Summary(pl):	
 Name:		perl-Apache-Scoreboard
 Version:	0.10
-Release:	1
+Release:	2
 License:	?
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 BuildRequires:	perl >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-26
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # required by example scripts
@@ -35,7 +34,7 @@ to provide current server statistics in a human readable form.
 
 %build
 perl Makefile.PL
-%{__make}
+%{__make} OPTIMIZE="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
