@@ -1,7 +1,6 @@
-# 
+#
 # Conditional build:
-# Can't get tests to work. Apache::Test doesn't find mod_status.
-%bcond_with	tests	# don't perform "make test"
+%bcond_without	tests	# don't perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define		pdir	Apache
@@ -9,13 +8,13 @@
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
-Version:	2.03
+Version:	2.08
 Release:	1
 License:	unknown
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	ad4accfef4a33b127e71a4f0a9954d91
-BuildRequires:	apache-mod_perl
+# Source0-md5:	f66b6e222cfc4b41c9b327af2478b44b
+BuildRequires:	apache-mod_perl-devel
 BuildRequires:	apr-devel >= 1:1.0
 BuildRequires:	apr-util-devel >= 1:1.0
 BuildRequires:	perl-devel >= 1:5.8.0
@@ -33,8 +32,8 @@ cpu time. This same information is used by mod_status to provide
 current server statistics in a human readable form.
 
 %description -l pl
-Apache ¶ledzi aktywno¶æ serwera w strukturze znanej jako scoreboard.
-W scoreboard znajduje siê slot dla ka¿dego serwera potomnego,
+Apache ¶ledzi aktywno¶æ serwera w strukturze znanej jako scoreboard. W
+scoreboard znajduje siê slot dla ka¿dego serwera potomnego,
 zawieraj±cy informacje takie jak stan, liczba klientów, wys³anych
 bajtów i zajêty czas procesora. Te same informacje s± u¿ywane przez
 mod_status do udostêpniania aktualnych statystyk w postaci czytelnej
@@ -44,11 +43,18 @@ dla cz³owieka.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
+INC="-I/usr/include/apache $(apr-1-config --includes) $(apu-1-config --includes)"
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor \
-	INC="-I/usr/include/apache $(apr-1-config --includes) $(apu-1-config --includes)"
+	INC="$INC"
+cd Dummy
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor \
+	INC="$INC"
+cd ..
 %{__make} \
 	OPTIMIZE="%{rpmcflags}"
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,6 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}
 cp -a examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+rm -f $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
+rm -f $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Apache/Scoreboard/.packlist
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,9 +77,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorarch}/auto/Apache/Scoreboard
 %attr(755,root,root) %{perl_vendorarch}/auto/Apache/Scoreboard/*.so
 %{perl_vendorarch}/auto/Apache/Scoreboard/*.bs
-# Isn't built. What's this anyway?
-#%dir %{perl_vendorarch}/auto/Apache/DummyScoreboard
-#%attr(755,root,root) %{perl_vendorarch}/auto/Apache/DummyScoreboard/*.so
-#%{perl_vendorarch}/auto/Apache/DummyScoreboard/*.bs
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
