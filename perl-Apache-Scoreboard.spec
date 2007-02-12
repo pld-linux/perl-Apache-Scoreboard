@@ -6,7 +6,7 @@
 %define		pdir	Apache
 %define		pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
-Summary(pl):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
+Summary(pl.UTF-8):   Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	2.08
 Release:	2
@@ -31,13 +31,13 @@ containing information such as status, access count, bytes served and
 cpu time. This same information is used by mod_status to provide
 current server statistics in a human readable form.
 
-%description -l pl
-Apache ¶ledzi aktywno¶æ serwera w strukturze znanej jako scoreboard. W
-scoreboard znajduje siê slot dla ka¿dego serwera potomnego,
-zawieraj±cy informacje takie jak stan, liczba klientów, wys³anych
-bajtów i zajêty czas procesora. Te same informacje s± u¿ywane przez
-mod_status do udostêpniania aktualnych statystyk w postaci czytelnej
-dla cz³owieka.
+%description -l pl.UTF-8
+Apache Å›ledzi aktywnoÅ›Ä‡ serwera w strukturze znanej jako scoreboard. W
+scoreboard znajduje siÄ™ slot dla kaÅ¼dego serwera potomnego,
+zawierajÄ…cy informacje takie jak stan, liczba klientÃ³w, wysÅ‚anych
+bajtÃ³w i zajÄ™ty czas procesora. Te same informacje sÄ… uÅ¼ywane przez
+mod_status do udostÄ™pniania aktualnych statystyk w postaci czytelnej
+dla czÅ‚owieka.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
