@@ -6,7 +6,7 @@
 %define		pdir	Apache
 %define		pnam	Scoreboard
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
-Summary(pl.UTF-8):   Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
+Summary(pl.UTF-8):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	2.08
 Release:	2
