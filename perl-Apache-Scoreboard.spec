@@ -9,7 +9,7 @@ Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl.UTF-8):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
 Version:	2.08
-Release:	6
+Release:	7
 License:	unknown
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -74,7 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%dir %{perl_vendorarch}/Apache
 %{perl_vendorarch}/Apache/*.pm
 %dir %{perl_vendorarch}/auto/Apache
 %dir %{perl_vendorarch}/auto/Apache/Scoreboard
