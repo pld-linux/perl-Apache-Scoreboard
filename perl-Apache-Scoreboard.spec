@@ -80,6 +80,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorarch}/auto/Apache
 %dir %{perl_vendorarch}/auto/Apache/Scoreboard
 %attr(755,root,root) %{perl_vendorarch}/auto/Apache/Scoreboard/*.so
-%{perl_vendorarch}/auto/Apache/Scoreboard/*.bs
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}
 %{_mandir}/man3/*
