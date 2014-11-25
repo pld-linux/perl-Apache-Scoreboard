@@ -1,10 +1,10 @@
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test". starts test httpd service
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define		pdir	Apache
 %define		pnam	Scoreboard
+%include	/usr/lib/rpm/macros.perl
 Summary:	Apache::Scoreboard - Perl interface to the Apache scoreboard structure
 Summary(pl.UTF-8):	Apache::Scoreboard - perlowy interfejs do struktury scoreboard Apache'a
 Name:		perl-Apache-Scoreboard
@@ -14,6 +14,7 @@ License:	unknown
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	df133feb853c4ef743557e6621adcc3f
+URL:		http://search.cpan.org/dist/Apache-Scoreboard/
 BuildRequires:	apache-mod_perl-devel
 BuildRequires:	apr-devel >= 1:1.0
 BuildRequires:	apr-util-devel >= 1:1.0
